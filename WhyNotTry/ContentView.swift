@@ -40,21 +40,20 @@ struct ContentView: View {
             .transition(.slide)
             .id(id)
             Spacer()
-            Button("Try again") {
-                if currentIndex < activities.count - 1 {
-                    currentIndex += 1
-                } else {
-                    currentIndex = 0
-                }
-                withAnimation(.easeInOut(duration: 1)) {
-                    selected = activities[currentIndex]
-                    id += 1
-                }
-            }
-            .buttonStyle(.borderedProminent)
         }
         .onAppear {
             getSelectedActivity()
+        }
+        .onTapGesture {
+            if currentIndex < activities.count - 1 {
+                currentIndex += 1
+            } else {
+                currentIndex = 0
+            }
+            withAnimation(.easeInOut(duration: 1)) {
+                selected = activities[currentIndex]
+                id += 1
+            }
         }
     }
 }
